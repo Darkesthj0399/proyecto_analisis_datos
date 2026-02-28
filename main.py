@@ -13,3 +13,10 @@ def cargar_datos(ruta_archivo):
     except Exception as e:
         print(f"Error al cargar el archivo: {e}")
         return None
+    
+
+def calculate_conversion_rate(df):
+    """Compara clics en categoría 'sale' (4) vs categorías regulares."""
+    sale_clicks = len(df[df['PAGE 1 (MAIN CATEGORY)'] == 4])
+    regular_clicks = len(df[df['PAGE 1 (MAIN CATEGORY)'].isin([1, 2, 3])])
+    return {"sale_clicks": sale_clicks, "regular_clicks": regular_clicks}
