@@ -14,6 +14,7 @@ def cargar_datos(ruta_archivo):
         print(f"Error al cargar el archivo: {e}")
         return None
     
+
 def get_country_name(df):
     """Mapea códigos numéricos a nombres de países según el diccionario."""
     mapping = {1: "Australia", 2: "Austria", 3: "Belgium", 12: "unidentified",
@@ -26,3 +27,15 @@ def clean_currency_data(df):
     df = df.dropna(subset=['PRICE'])
     df = df[df['PRICE'] > 0]
     return df
+
+
+def calculate_conversion_rate(df):
+    """Compara clics en categoría 'sale' (4) vs categorías regulares."""
+    sale_clicks = len(df[df['PAGE 1 (MAIN CATEGORY)'] == 4])
+    regular_clicks = len(df[df['PAGE 1 (MAIN CATEGORY)'].isin([1, 2, 3])])
+    return {"sale_clicks": sale_clicks, "regular_clicks": regular_clicks}
+
+
+def analyze_price_elasticity(df):
+    """Compara clics entre productos con precio superior al promedio (1) y el resto (2)."""
+    return df['PRICE 2'].value_counts()
