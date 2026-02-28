@@ -21,3 +21,8 @@ def get_country_name(df):
     # Se recomienda completar el diccionario con los 47 códigos del archivo
     df['COUNTRY_NAME'] = df['COUNTRY'].map(mapping)
     return df
+def clean_currency_data(df):
+    """Valida que los precios sean positivos y no nulos."""
+    df = df.dropna(subset=['PRICE'])
+    df = df[df['PRICE'] > 0]
+    return df
