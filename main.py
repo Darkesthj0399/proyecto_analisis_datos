@@ -13,3 +13,11 @@ def cargar_datos(ruta_archivo):
     except Exception as e:
         print(f"Error al cargar el archivo: {e}")
         return None
+    
+def get_country_name(df):
+    """Mapea códigos numéricos a nombres de países según el diccionario."""
+    mapping = {1: "Australia", 2: "Austria", 3: "Belgium", 12: "unidentified",
+    29: "Poland", 41: "United Kingdom", 42: "USA", 44: "com"}
+    # Se recomienda completar el diccionario con los 47 códigos del archivo
+    df['COUNTRY_NAME'] = df['COUNTRY'].map(mapping)
+    return df
