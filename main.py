@@ -20,3 +20,8 @@ def calculate_conversion_rate(df):
     sale_clicks = len(df[df['PAGE 1 (MAIN CATEGORY)'] == 4])
     regular_clicks = len(df[df['PAGE 1 (MAIN CATEGORY)'].isin([1, 2, 3])])
     return {"sale_clicks": sale_clicks, "regular_clicks": regular_clicks}
+
+
+def analyze_price_elasticity(df):
+    """Compara clics entre productos con precio superior al promedio (1) y el resto (2)."""
+    return df['PRICE 2'].value_counts()
